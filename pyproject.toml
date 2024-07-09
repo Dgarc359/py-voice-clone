@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "py-voice-clone"
+version = "0.1.0"
+description = "An application built to provide cloned voices in a real time data stream"
+authors = ["dgarc359 <87497958+Dgarc359@users.noreply.github.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.12"
+tts = "^0.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

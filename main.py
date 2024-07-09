@@ -1,0 +1,72 @@
+import os
+from TTS.api import TTS
+from TTS.tts.configs.shared_configs import BaseDatasetConfig
+from TTS.tts.datasets import load_tts_samples
+
+speaker="combined-portal2-wheatley"
+
+def main():
+    # train_model(speaker)
+    speaker_wavs = get_speaker_wavs(speaker, "ROOT_PATH_TO_PROJECT")
+    # print(speaker_wavs)
+
+    generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls. His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
+
+# TODO: this doesn't do anything right now
+def train_model(speaker):
+    print("Training model...\n")
+    training_dir= f"{root_path}/lib/assets/training_data/{speaker}"
+
+    # dataset config for one of the pre-defined datasets
+    dataset_config = BaseDatasetConfig(
+        formatter="vctk", meta_file_train="metadata.txt", language="en-us", path=training_dir, meta_file_val="metadata.txt"
+    )
+    
+
+    # load training samples
+    train_samples, eval_samples = load_tts_samples(dataset_config, eval_split=True, formatter=formatter, eval_split_size=0.071428571428571)
+    # train_samples, eval_samples = load_tts_samples(dataset_config, eval_split=True)
+    print(train_samples, eval_samples)
+
+
+# get speaker wav files from an ljspeech structured directory
+def get_speaker_wavs(speaker, root_path):
+    training_dir= f"{root_path}/lib/assets/training_data/{speaker}"
+
+    files = os.walk(training_dir)
+
+    speaker_wavs = []
+
+    for (dir_path, dir_names, file_names) in files:
+        for file in file_names:
+            if(file == 'metadata.txt'):
+                continue
+            speaker_wavs.append(f"{dir_path}/{file}")
+    
+    return speaker_wavs
+
+def generate_tts(text, speaker_wavs):
+    tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
+    # generate speech by cloning a voice using default settings
+    tts.tts_to_file(text=text,
+                    file_path="output.wav",
+                    speaker_wav=speaker_wavs,
+                    language="en")
+
+# custom formatter implementation
+def formatter(root_path, manifest_file, **kwargs):  # pylint: disable=unused-argument
+    """Assumes each line as ```<filename>|<transcription>```
+    """
+    txt_file = os.path.join(root_path, manifest_file)
+    items = []
+    speaker_name = speaker
+    with open(txt_file, "r", encoding="utf-8") as ttf:
+        for line in ttf:
+            cols = line.split("|")
+            wav_file = os.path.join(root_path, "wavs", cols[-1])
+            text = cols[0]
+            items.append({"text":text, "audio_file":wav_file, "speaker_name":speaker_name, "root_path": root_path})
+    return items 
+
+if __name__ == "__main__":
+    main()
