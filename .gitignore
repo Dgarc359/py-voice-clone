@@ -1,4 +1,4 @@
-
+*.zip
 lib/assets/training_data/
 
 out

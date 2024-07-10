@@ -2,12 +2,13 @@ import os
 from TTS.api import TTS
 from TTS.tts.configs.shared_configs import BaseDatasetConfig
 from TTS.tts.datasets import load_tts_samples
+ROOT_DIR = os.path.abspath(os.curdir)
 
 speaker="combined-portal2-wheatley"
 
 def main():
     # train_model(speaker)
-    speaker_wavs = get_speaker_wavs(speaker, "ROOT_PATH_TO_PROJECT")
+    speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
     # print(speaker_wavs)
 
     generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls. His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
