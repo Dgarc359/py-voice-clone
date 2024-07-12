@@ -43,3 +43,35 @@ This python application uses poetry to manage its dependencies. Please install p
 ```
 poetry run python main.py
 ```
+
+## Fine tuning the model
+
+In order to fine tune the model, you will need to download the model from huggingface [here](https://huggingface.co/coqui/XTTS-v2)
+
+
+
+## XTTSv2 Config
+
+
+To do real time audio streaming, you should have an xtts config json. The one used in the project was first grabbed from [here](https://huggingface.co/coqui/XTTS-v2/blob/main/config.json)
+
+
+## Leveraging CUDA
+
+Helpful links
+* https://docs.nvidia.com/cuda/wsl-user-guide/index.html
+
+**tldr for CUDA on WSL**
+Visit [this site](https://developer.nvidia.com/cuda-downloads)
+And click: Linux -> x86_64 (or whatever your architecture is) -> WSL-Ubuntu -> 2.0
+
+Although it says ubuntu, it should also theoretically work for Debian. YMMV.
+
+There seems to be an issue with the version of deepspeed used: "0.10.3" on amd CPUs. Needs more investigation. Current plans are to enable
+the user to flag whether or not they want to use deepspeed
+
+You should go [here](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) and make sure that you're able to leverage the CUDA toolkit before running this program
+
+
+# References and related work
+* [Fine tuning xttsv2 Model](https://www.youtube.com/watch?v=dzvW4QZamm8)

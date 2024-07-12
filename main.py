@@ -2,21 +2,24 @@ import os
 from TTS.api import TTS
 from TTS.tts.configs.shared_configs import BaseDatasetConfig
 from TTS.tts.datasets import load_tts_samples
+from src.custom_tts import CustomTTS
 ROOT_DIR = os.path.abspath(os.curdir)
 
 speaker="combined-portal2-wheatley"
 
 def main():
     # train_model(speaker)
-    speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
-    # print(speaker_wavs)
+    # speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
+    # # print(speaker_wavs)
 
-    generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls. His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
+    # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
+    custom_tts = CustomTTS("model/xttsv2/config.json", "model/xttsv2/")
+    pass
 
 # TODO: this doesn't do anything right now
 def train_model(speaker):
     print("Training model...\n")
-    training_dir= f"{root_path}/lib/assets/training_data/{speaker}"
+    training_dir= f"{ROOT_DIR}/lib/assets/training_data/{speaker}"
 
     # dataset config for one of the pre-defined datasets
     dataset_config = BaseDatasetConfig(
