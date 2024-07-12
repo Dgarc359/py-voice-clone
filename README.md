@@ -2,6 +2,20 @@
 
 A simple application to clone voices. Currently, real time cloned voice data streaming is not supported, but it is planned.
 
+# Setup
+
+Before you run the application, you need to make sure you have a dataset loaded in `lib/assets/training_data` in this repository.
+
+# Usage
+
+This project uses poetry to manage dependencies
+
+```sh
+# Run the application
+poetry run python main.py
+```
+
+
 ## Dataset structure
 
 Audio datasets should conform to the following format:
