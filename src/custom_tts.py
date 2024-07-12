@@ -26,7 +26,7 @@ class CustomTTS:
     def init_xtts_model(self, config, model_path):
         model = Xtts.init_from_config(config)
 
-        model.load_checkpoint(config, checkpoint_dir=model_path, use_deepspeed=False)
+        model.load_checkpoint(config, checkpoint_dir=model_path, use_deepspeed=True)
         model.cuda()
 
         return model

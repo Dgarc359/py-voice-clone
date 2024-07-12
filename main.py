@@ -14,7 +14,7 @@ def main():
 
     # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
     custom_tts = CustomTTS("model/xttsv2/config.json", "model/xttsv2/")
-    pass
+    print("Finished instantiating model")
 
 # TODO: this doesn't do anything right now
 def train_model(speaker):
