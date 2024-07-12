@@ -2,6 +2,7 @@
 lib/assets/training_data/**/
 !lib/assets/training_data/example/
 model/*/
+!lib/assets/training_data/example/wavs
 
 out
 **/*.wav
