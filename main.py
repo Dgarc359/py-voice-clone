@@ -13,7 +13,8 @@ def main():
     # # print(speaker_wavs)
 
     # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
-    custom_tts = CustomTTS("model/xttsv2/config.json", "model/xttsv2/", speaker_wavs[0])
+    model_dir= "model/XTTS-v2"
+    custom_tts = CustomTTS(f"{model_dir}/config.json", model_dir, speaker_wavs[0])
     print("Finished instantiating model")
     custom_tts.text_to_speech("Hello, it's me, wheatley, wow, it feels good to be here!")
 
@@ -26,7 +27,7 @@ def train_model(speaker):
     dataset_config = BaseDatasetConfig(
         formatter="vctk", meta_file_train="metadata.txt", language="en-us", path=training_dir, meta_file_val="metadata.txt"
     )
-    
+
 
     # load training samples
     train_samples, eval_samples = load_tts_samples(dataset_config, eval_split=True, formatter=formatter, eval_split_size=0.071428571428571)
@@ -47,7 +48,7 @@ def get_speaker_wavs(speaker, root_path):
             if(file == 'metadata.txt'):
                 continue
             speaker_wavs.append(f"{dir_path}/{file}")
-    
+
     return speaker_wavs
 
 def generate_tts(text, speaker_wavs):
@@ -71,7 +72,7 @@ def formatter(root_path, manifest_file, **kwargs):  # pylint: disable=unused-arg
             wav_file = os.path.join(root_path, "wavs", cols[-1])
             text = cols[0]
             items.append({"text":text, "audio_file":wav_file, "speaker_name":speaker_name, "root_path": root_path})
-    return items 
+    return items
 
 if __name__ == "__main__":
     main()
