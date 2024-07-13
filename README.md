@@ -8,11 +8,17 @@ Before you run the application, you need to make sure you have a dataset loaded 
 
 
 > [!IMPORTANT]
-> This project uses poetry to manage dependencies. Before using this project, you will need to [install it.](https://python-poetry.org/docs/#installing-with-pipx)
+> This project uses poetry to manage dependencies and python versions. Before using this project, you will need to [install it.](https://python-poetry.org/docs/#installing-with-pipx)
 
 # Usage
 
 ```sh
+# Create venv
+python3 -m venv venv
+
+# Activate
+source venv/bin/activate
+
 # Install dependencies
 poetry install
 
