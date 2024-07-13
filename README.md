@@ -6,11 +6,16 @@ A simple application to clone voices. Currently, real time cloned voice data str
 
 Before you run the application, you need to make sure you have a dataset loaded in `lib/assets/training_data` in this repository.
 
+
+> [!IMPORTANT]
+> This project uses poetry to manage dependencies. Before using this project, you will need to [install it.](https://python-poetry.org/docs/#installing-with-pipx)
+
 # Usage
 
-This project uses poetry to manage dependencies
-
 ```sh
+# Install dependencies
+poetry install
+
 # Run the application
 poetry run python main.py
 ```
