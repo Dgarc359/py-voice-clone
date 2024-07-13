@@ -1,0 +1,1 @@
+sudo apt install $(cat apt.pkglist)

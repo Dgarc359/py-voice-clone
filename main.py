@@ -9,12 +9,13 @@ speaker="combined-portal2-wheatley"
 
 def main():
     # train_model(speaker)
-    # speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
+    speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
     # # print(speaker_wavs)
 
     # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
-    custom_tts = CustomTTS("model/xttsv2/config.json", "model/xttsv2/")
+    custom_tts = CustomTTS("model/xttsv2/config.json", "model/xttsv2/", speaker_wavs[0])
     print("Finished instantiating model")
+    custom_tts.text_to_speech("Hello, it's me, wheatley, wow, it feels good to be here!")
 
 # TODO: this doesn't do anything right now
 def train_model(speaker):
