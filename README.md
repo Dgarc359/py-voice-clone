@@ -2,6 +2,9 @@
 
 A simple application to clone voices. Currently, real time cloned voice data streaming is not supported, but it is planned.
 
+The current objective is to add some utility with audacity in order
+to make it easy for users to create fresh audio clips
+
 # Setup
 
 Before you run the application, you need to make sure you have a dataset loaded in `lib/assets/training_data` in this repository.
