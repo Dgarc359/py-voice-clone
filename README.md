@@ -3,6 +3,10 @@
 A simple application to clone voices. Audio is outputted to the default sound device instead
 of being saved to a file.
 
+Currently following along with the fine-tuning video in the references section
+and architecting the code so that it can easily be re-used on other datasets without
+a lot of manual steps
+
 **Available Utilities**
 * Audacity labeling and audio splitting automation
 * Faster Whisper ljspeech dataset creation
