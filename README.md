@@ -1,9 +1,15 @@
 # py-voice-clone
 
-A simple application to clone voices. Currently, real time cloned voice data streaming is not supported, but it is planned.
+A simple application to clone voices. Audio is outputted to the default sound device instead
+of being saved to a file.
 
-The current objective is to add some utility with audacity in order
-to make it easy for users to create fresh audio clips
+**Available Utilities**
+* Audacity labeling and audio splitting automation
+* Faster Whisper ljspeech dataset creation
+
+There is some utilities available to use the audacity scripting API to automate
+labeling audio and splitting it out into individual pieces of audio.
+
 
 # Setup
 
