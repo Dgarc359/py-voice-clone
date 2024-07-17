@@ -79,7 +79,7 @@ class CustomTTS:
         wav_chunks = []
         for i, chunk in enumerate(chunks):
             if i == 0:
-                print(f"Time to first chunck: {time.time() - t0}")
+                print(f"Time to first chunk: {time.time() - t0}")
             print(f"Received chunk {i} of audio length {chunk.shape[-1]}")
             wav_chunks.append(chunk)
         wav = np.concatenate(wav_chunks, axis=0)
