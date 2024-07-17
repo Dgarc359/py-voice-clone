@@ -9,14 +9,14 @@ ROOT_DIR = os.path.abspath(os.curdir)
 speaker="portal2-wheatley"
 
 def main():
-    print("instantiating whisper client")
-    whisper_client = FasterWhisperClient()
-    print("instantiated whisper client")
+    # print("instantiating whisper client")
+    # whisper_client = FasterWhisperClient()
+    # print("instantiated whisper client")
 
-    whisper_client.transcribe_directory(f"{ROOT_DIR}/out/single_channel_wavs")
-    print("transcribed directory")
+    # whisper_client.transcribe_directory(f"{ROOT_DIR}/out/single_channel_wavs")
+    # print("transcribed directory")
 
-  # speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
+  speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
   # audacity_client = Audacity()
 
   # audacity.label_sounds(audacity_client, speaker_wavs[0], ROOT_DIR)
@@ -24,12 +24,12 @@ def main():
     # train_model(speaker)
     # # # print(speaker_wavs)
 
-    # # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
-    # model_dir= "model/XTTS-v2"
-    # custom_tts = CustomTTS(f"{model_dir}/config.json", model_dir, speaker_wavs[0])
-    # print("Finished instantiating model")
-    # custom_tts.text_to_speech("Hello, it's me, wheatley, wow, it feels good to be here!")
-    pass
+    # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
+
+  model_dir= "model/XTTS-v2"
+  custom_tts = CustomTTS(f"{model_dir}/config.json", model_dir, speaker_wavs[0])
+  custom_tts.text_to_speech("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.")
+  pass
 
 # TODO: this doesn't do anything right now
 def train_model(speaker):
