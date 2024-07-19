@@ -19,6 +19,8 @@ labeling audio and splitting it out into individual pieces of audio.
 
 Before you run the application, you need to make sure you have a dataset loaded in `lib/assets/training_data` in this repository.
 
+a valid ljspeech dataset can be retrieved from the coqui-ai-tts repository [here](https://github.com/idiap/coqui-ai-TTS/tree/dev/tests/data/ljspeech)
+
 
 > [!IMPORTANT]
 > This project uses poetry to manage dependencies and python versions. Before using this project, you will need to [install it.](https://python-poetry.org/docs/#installing-with-pipx)
