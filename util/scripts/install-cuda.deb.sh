@@ -1,4 +1,5 @@
 #!/bin/bash
+# Installs cuda on debian wsl
 
 cd /tmp
 wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin

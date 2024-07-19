@@ -10,7 +10,7 @@ ROOT_DIR = os.path.abspath(os.curdir)
 speaker="portal2-wheatley"
 
 def main():
-  coqui_main(ROOT_DIR)
+  coqui_main(ROOT_DIR, "ljspeech")
     # print("instantiating whisper client")
     # whisper_client = FasterWhisperClient()
     # print("instantiated whisper client")
