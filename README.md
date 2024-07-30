@@ -41,6 +41,9 @@ poetry install
 poetry run python main.py
 ```
 
+# Fine tuning
+
+According to nanomonad, who references the author of coqui-tts, a fine-tuned xtts_v2 should have decent samples after 1.3 epochs, assuming that training and testing data were set up properly.
 
 ## Dataset structure
 
@@ -66,6 +69,7 @@ There's been some simple experimentation done to see what constitutes a good dat
 * Combining multiple wav files into one wav file, for a single speaker
 * Increasing the number of speaker samples available in the dataset
 * Removing audio clips that do not have the tone of the speaker you wish to capture
+* Until more research is done, it's recommended to keep audio clips for training below 10 seconds
 
 
 ## Capturing a speaker's tone
@@ -113,5 +117,15 @@ the user to flag whether or not they want to use deepspeed
 You should go [here](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) and make sure that you're able to leverage the CUDA toolkit before running this program
 
 
+# Troubleshooting
+
+**Text length exceeding 250 characters**
+This might be an issue with the length of the audio files in your training dataset. 
+Please try using the util script `delete-long-audio-files.sh` to take out the long audio files from your dataset. 
+Afterwards, you can use the `diff_ljspeech_metadata_csv.py` file to create a new metadata.csv with the deleted files excluded.
+
 # References and related work
 * [Fine tuning xttsv2 Model](https://www.youtube.com/watch?v=dzvW4QZamm8)
+
+# Latest run
+run/training/GPT_XTTS_v2.0_LJSpeech_FT-single_channel_wavs-July-28-2024_01+59PM-9f8773b

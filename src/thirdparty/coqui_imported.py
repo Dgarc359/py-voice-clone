@@ -10,7 +10,7 @@ from TTS.utils.manage import ModelManager
 
 
 
-def main(ROOT_PATH, speaker):
+def main(ROOT_PATH, speaker, eval_filename):
     # Logging parameters
     RUN_NAME = f"GPT_XTTS_v2.0_LJSpeech_FT-{speaker}"
     PROJECT_NAME = "ljspeech"
@@ -77,7 +77,7 @@ def main(ROOT_PATH, speaker):
 
     # Training sentences generations
     SPEAKER_REFERENCE = [
-        f"{root_path_dir}/wavs/LJ001-0002.wav"  # speaker reference to be used in training test sentences
+        f"{root_path_dir}/wavs/{eval_filename}.wav"  # speaker reference to be used in training test sentences
     ]
     LANGUAGE = config_dataset.language
     # init args and config
