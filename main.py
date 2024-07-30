@@ -4,11 +4,15 @@ from TTS.tts.configs.shared_configs import BaseDatasetConfig
 from TTS.tts.datasets import load_tts_samples
 from src.custom_tts import CustomTTS
 from src.thirdparty.whisper_client import FasterWhisperClient
+from src.thirdparty.coqui_imported import main as coqui_main
+from src.diff_ljspeech_metadata_csv import main as diff_ljspeech_main
 ROOT_DIR = os.path.abspath(os.curdir)
 
-speaker="portal2-wheatley"
+speaker="combined-portal2-wheatley"
 
 def main():
+#   diff_ljspeech_main(f"{ROOT_DIR}/lib/assets/training_data/single_channel_wavs")
+#   coqui_main(ROOT_DIR, "single_channel_wavs", "Wheatley_bw_a4_2nd_first_test_solve02")
     # print("instantiating whisper client")
     # whisper_client = FasterWhisperClient()
     # print("instantiated whisper client")
@@ -16,20 +20,20 @@ def main():
     # whisper_client.transcribe_directory(f"{ROOT_DIR}/out/single_channel_wavs")
     # print("transcribed directory")
 
-  speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
-  # audacity_client = Audacity()
+    speaker_wavs = get_speaker_wavs(speaker, ROOT_DIR)
+  # # audacity_client = Audacity()
 
-  # audacity.label_sounds(audacity_client, speaker_wavs[0], ROOT_DIR)
+  # # audacity.label_sounds(audacity_client, speaker_wavs[0], ROOT_DIR)
   
-    # train_model(speaker)
-    # # # print(speaker_wavs)
+  #   # train_model(speaker)
+  #   # # # print(speaker_wavs)
 
     # generate_tts("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.", speaker_wavs)
 
-  model_dir= "model/XTTS-v2"
-  custom_tts = CustomTTS(f"{model_dir}/config.json", model_dir, speaker_wavs[0])
-  custom_tts.text_to_speech("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.")
-  pass
+    model_dir= "model/xttsv2"
+    custom_tts = CustomTTS(f"{model_dir}/config.json", model_dir, speaker_wavs[0])
+    custom_tts.text_to_speech("On dark and lonely nights, George Bush is want to stare longingly into the moon while wearing his custom made fur-suit. The monster inside of him howls!?!?!? RAWWWRRR!!!! His little toes are cold in the snow of the first summer frost. He desperately seeks to find the one piece.")
+    pass
 
 # TODO: this doesn't do anything right now
 def train_model(speaker):

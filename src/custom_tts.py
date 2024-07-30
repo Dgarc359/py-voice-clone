@@ -5,6 +5,7 @@ import time
 import sounddevice as sd
 from TTS.tts.configs.xtts_config import XttsConfig
 from TTS.tts.models.xtts import Xtts
+import wave
 
 class CustomTTS:
 
@@ -70,7 +71,16 @@ class CustomTTS:
       sd.play(wav, samplerate=sample_rate)
       sd.wait()
     
+    def __save_audio_to_file(self, wav: np.ndarray, sample_rate):
 
+        with wave.open("xtts_output.wav", "w") as f:
+            f.setnchannels(2)
+
+            f.setsampwidth(2)
+
+            f.setframerate(sample_rate)
+            f.writeframes(wav.T.tobytes())
+    
     def __run_model_inference(self, text_to_speechify):
         gpt_cond_latent, speaker_embedding = self.conditioning_latents
         t0 = time.time()
@@ -83,4 +93,20 @@ class CustomTTS:
             print(f"Received chunk {i} of audio length {chunk.shape[-1]}")
             wav_chunks.append(chunk)
         wav = np.concatenate(wav_chunks, axis=0)
-        self.__play_audio(wav, 24000)
+
+        # self.__save_audio_to_file(wav, 24000)
+
+        try:
+            self.__play_pyaudio(wav, 24000)
+        except:
+            print("Failed to play pyaudio")
+        
+            try:
+                self.__play_audio(wav, 24000)
+            except:
+                print("Failed to play audio")
+
+                try:
+                    self.__play_sounddeviceaudio(wav, 2400)
+                except:
+                    print("Failed to play audio")
